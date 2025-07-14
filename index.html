@@ -6,20 +6,22 @@
   <title>Alaz & Alzen - 2. Ayımız</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
   <style>
-    /* Temel ayarlar */
     body {
       margin: 0;
       font-family: 'Open Sans', sans-serif;
-      background: url('https://i.imgur.com/0lGQUpU.jpg') no-repeat center center fixed;
+      background-color: #121212; /* fallback renk */
+      background-image: url('https://i.imgur.com/0lGQUpU.jpg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       background-size: cover;
       color: white;
       text-align: center;
       overflow-x: hidden;
       overflow-y: auto;
       height: 100vh;
+      position: relative;
     }
-
-    /* Giriş ekranı */
     #giris {
       position: fixed;
       top: 0; left: 0;
@@ -31,6 +33,10 @@
       align-items: center;
       z-index: 10;
       padding: 20px;
+    }
+    #giris img {
+      width: 150px;
+      margin-bottom: 20px;
     }
     #giris h1 {
       font-weight: normal;
@@ -53,8 +59,6 @@
     #surprizButon:hover {
       background: #e63950;
     }
-
-    /* İçerik bölümü */
     #icerik {
       display: none;
       max-width: 700px;
@@ -76,8 +80,6 @@
     #icerik p {
       white-space: pre-line;
     }
-
-    /* Kalp stili ve animasyonu */
     .kalp {
       position: fixed;
       width: 25px;
@@ -105,7 +107,6 @@
       left: -12.5px;
       top: 0;
     }
-
     @keyframes kalpAnim {
       0% {
         opacity: 1;
@@ -120,6 +121,7 @@
 </head>
 <body>
   <div id="giris">
+    <img src="https://i.imgur.com/TfT0Wqr.png" alt="Çift Silueti" />
     <h1>Alaz & Alzen — 2. Ayımız</h1>
     <button id="surprizButon">Sürprizi Aç 💖</button>
   </div>
@@ -130,15 +132,11 @@
       Hayatımın en güzel 2 ayı seninle geçti. Daha dün gibi gözlerinin içine ilk baktığım an...<br>
       Zaman geçtikçe seni tanıdıkça, sana her gün yeniden âşık oldum. Gülüşünle içimi ısıttın,<br>
       sesinle ruhuma huzur verdin. Varlığın bana güç, umut, sevgi kattı.<br><br>
-
       Seninle geçirdiğim her saniye, hayatımdaki en değerli anlara dönüştü. Sanki kalbim yıllardır seni bekliyormuş.<br>
       İyi ki geldin, iyi ki varsın, iyi ki “biz” olduk. Her şeyinle, her halinle mükemmelsin.<br><br>
-
       Bu iki ay, sadece bir başlangıç. Daha yaşayacak milyonlarca anımız, birlikte izleyecek gün batımlarımız,<br>
       tutacağımız ellerimiz var. Ve ben her bir anı seninle geçirmek istiyorum…<br><br>
-
       Seni tarifsizce, derinden ve sonsuzca seviyorum Alzen…<br><br>
-
       — Alaz 💖
     </p>
   </div>
@@ -160,7 +158,6 @@
     };
 
     function kalpYagmuru() {
-      // 40 kalp oluştur, her biri rastgele yatay pozisyonda, rastgele gecikmeyle çıkacak
       for(let i=0; i<40; i++) {
         setTimeout(() => {
           const kalp = document.createElement('div');
@@ -170,9 +167,9 @@
           kalp.style.animationDuration = `${5 + Math.random() * 5}s`;
           document.body.appendChild(kalp);
           setTimeout(() => kalp.remove(), 10000);
-        }, i * 300); // kalpler 300ms aralıkla çıkıyor
+        }, i * 300);
       }
     }
   </script>
 </body>
-</html>
+  </html>
