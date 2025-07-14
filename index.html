@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alaz & Alzen - 2. Ayımız</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: url('https://i.imgur.com/0lGQUpU.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+    #giris {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    #giris h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    #surprizButon {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #surprizButon:hover {
+      background: #e63950;
+    }
+    #icerik {
+      display: none;
+      padding: 40px 20px;
+      max-width: 700px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+    .kalp {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: kalpAnim 10s linear infinite;
+    }
+    .kalp::before, .kalp::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .kalp::before {
+      top: -10px; left: 0;
+    }
+    .kalp::after {
+      left: -10px; top: 0;
+    }
+    @keyframes kalpAnim {
+      0% {
+        top: 100%;
+        left: calc(100% * var(--x));
+        opacity: 1;
+      }
+      100% {
+        top: -10%;
+        left: calc(100% * var(--x));
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="giris">
+    <h1>Alaz & Alzen — 2. Ayımız</h1>
+    <button id="surprizButon">Sürprizi Aç 💖</button>
+  </div>  <div id="icerik">
+    <h2>Alzen...</h2>
+    <p>
+      Hayatımın en güzel 2 ayı seninle geçti. Daha dün gibi gözlerinin içine ilk baktığım an...<br>
+      Zaman geçtikçe seni tanıdıkça, sana her gün yeniden âşık oldum. Gülüşünle içimi ısıttın,<br>
+      sesinle ruhuma huzur verdin. Varlığın bana güç, umut, sevgi kattı.<br><br>
+      Seninle geçirdiğim her saniye, hayatımdaki en değerli anlara dönüştü. Sanki kalbim yıllardır seni bekliyormuş.<br>
+      İyi ki geldin, iyi ki varsın, iyi ki “biz” olduk. Her şeyinle, her halinle mükemmelsin.<br><br>
+      Bu iki ay, sadece bir başlangıç. Daha yaşayacak milyonlarca anımız, birlikte izleyecek gün batımlarımız,
+      tutacağımız ellerimiz var. Ve ben her bir anı seninle geçirmek istiyorum…<br><br>
+      Seni tarifsizce, derinden ve sonsuzca seviyorum Alzen…<br><br>
+      — Alaz 💖
+    </p>
+  </div>  <audio autoplay loop>
+    <source src="https://dl.sndup.net/85hx/YalnizlikSenfonisi.mp3" type="audio/mp3">
+  </audio>  <script>
+    const btn = document.getElementById("surprizButon");
+    const giris = document.getElementById("giris");
+    const icerik = document.getElementById("icerik");
+
+    btn.onclick = () => {
+      giris.style.display = "none";
+      icerik.style.display = "block";
+      kalpYagmuru();
+    };
+
+    function kalpYagmuru() {
+      for (let i = 0; i < 40; i++) {
+        const kalp = document.createElement("div");
+        kalp.className = "kalp";
+        kalp.style.setProperty("--x", Math.random());
+        kalp.style.left = `${Math.random() * 100}%`;
+        document.body.appendChild(kalp);
+        setTimeout(() => kalp.remove(), 10000);
+      }
+    }
+  </script></body>
+</html>
