@@ -10,17 +10,17 @@
     height: 100%;
     margin: 0; padding: 0;
     font-family: 'Quicksand', sans-serif;
-    background: url('https://i.imgur.com/4pJ2P3h.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background: #fff;
     overflow-x: hidden;
-    color: white;
+    color: #333;
+    position: relative;
   }
 
   #giris {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(255, 192, 203, 0.6);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,12 +33,13 @@
   #giris h1 {
     font-size: 3em;
     margin-bottom: 20px;
+    color: #c71585;
   }
 
   #surprizButon {
     padding: 15px 40px;
     font-size: 1.3em;
-    background: #ffb6c1;
+    background: #ff69b4;
     border: none;
     border-radius: 30px;
     color: #fff;
@@ -48,7 +49,7 @@
   }
 
   #surprizButon:hover {
-    background: #ff8fa3;
+    background: #ff1493;
   }
 
   #icerik {
@@ -56,37 +57,95 @@
     max-width: 750px;
     margin: 80px auto;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.85);
+    background: #ffe4e1;
     border-radius: 20px;
     color: #444;
-    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    box-shadow: 0 0 30px rgba(255,105,180,0.4);
     line-height: 1.6;
     font-size: 1.15em;
     position: relative;
     z-index: 20;
+    text-align: center;
   }
 
-  .kalp {
+  /* Kalp ve çiçek balonlar */
+  .balon {
     position: fixed;
-    width: 25px;
-    height: 25px;
+    bottom: -50px;
+    width: 40px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: balonYukari linear forwards;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 8;
+  }
+
+  .balon.kalp {
+    background-image: url('https://i.imgur.com/F5b0r0j.png');
+  }
+
+  .balon.cicek {
+    background-image: url('https://i.imgur.com/dGqUbOS.png');
+  }
+
+  @keyframes balonYukari {
+    0% {
+      bottom: -50px;
+      opacity: 0.8;
+      transform: translateX(0) scale(1);
+    }
+    100% {
+      bottom: 110vh;
+      opacity: 0;
+      transform: translateX(30px) scale(1.3);
+    }
+  }
+
+  /* Fare takip eden küçük kalpler */
+  .fare-kalp {
+    position: fixed;
+    width: 15px;
+    height: 15px;
     background-image: url('https://i.imgur.com/F5b0r0j.png');
     background-size: contain;
     background-repeat: no-repeat;
-    animation: kalpYukari 10s linear infinite;
     pointer-events: none;
-    z-index: 5;
-    opacity: 0;
+    opacity: 0.9;
+    animation: fadeOut 1.5s forwards;
+    z-index: 30;
   }
 
-  @keyframes kalpYukari {
+  @keyframes fadeOut {
+    to {opacity: 0; transform: translateY(-20px);}
+  }
+
+  /* Patlayan büyük kalp */
+  .patlayan-kalp {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    background-image: url('https://i.imgur.com/F5b0r0j.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 40;
+    animation: patla 1s forwards;
+  }
+
+  @keyframes patla {
     0% {
-      transform: translateY(110vh) rotate(0deg);
-      opacity: 0;
+      transform: scale(0.2);
+      opacity: 0.9;
     }
-    10% { opacity: 1; }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.6;
+    }
     100% {
-      transform: translateY(-10vh) rotate(360deg);
+      transform: scale(2.5);
       opacity: 0;
     }
   }
@@ -117,29 +176,88 @@
     <source src="https://dl.sndup.net/85hx/YalnizlikSenfonisi.mp3" type="audio/mp3" />
   </audio>
 
-  <script>
-    const buton = document.getElementById('surprizButon');
-    const giris = document.getElementById('giris');
-    const icerik = document.getElementById('icerik');
+<script>
+  const buton = document.getElementById('surprizButon');
+  const giris = document.getElementById('giris');
+  const icerik = document.getElementById('icerik');
 
-    buton.onclick = () => {
-      giris.style.display = 'none';
-      icerik.style.display = 'block';
-      kalpYagmuru();
-    };
+  buton.onclick = () => {
+    giris.style.display = 'none';
+    icerik.style.display = 'block';
+    baslatEfektler();
+  };
 
-    function kalpYagmuru() {
-      for (let i = 0; i < 40; i++) {
-        setTimeout(() => {
-          const kalp = document.createElement('div');
-          kalp.classList.add('kalp');
-          kalp.style.left = `${Math.random() * 100}vw`;
-          kalp.style.animationDuration = `${6 + Math.random() * 5}s`;
-          document.body.appendChild(kalp);
-          setTimeout(() => kalp.remove(), 12000);
-        }, i * 300);
-      }
+  // Fareyi takip eden kalpler
+  document.addEventListener('mousemove', (e) => {
+    if(icerik.style.display === 'block') {
+      const kalp = document.createElement('div');
+      kalp.classList.add('fare-kalp');
+      kalp.style.left = (e.clientX - 7) + 'px';
+      kalp.style.top = (e.clientY - 7) + 'px';
+      document.body.appendChild(kalp);
+      setTimeout(() => kalp.remove(), 1500);
     }
-  </script>
+  });
+
+  // Dokunmatik cihazlarda dokunma ile kalp efekti
+  document.addEventListener('touchmove', (e) => {
+    if(icerik.style.display === 'block') {
+      const touch = e.touches[0];
+      const kalp = document.createElement('div');
+      kalp.classList.add('fare-kalp');
+      kalp.style.left = (touch.clientX - 7) + 'px';
+      kalp.style.top = (touch.clientY - 7) + 'px';
+      document.body.appendChild(kalp);
+      setTimeout(() => kalp.remove(), 1500);
+    }
+  });
+
+  // Patlayan kalp ve balonları başlat
+  function baslatEfektler() {
+    // 20 saniyede bir patlayan kalp
+    setInterval(() => {
+      patlayanKalpOlustur();
+    }, 20000);
+    patlayanKalpOlustur(); // ilk başta da patlasın
+
+    // Balonları aralıklı oluştur
+    setInterval(() => {
+      balonOlustur();
+    }, 2500);
+  }
+
+  function patlayanKalpOlustur() {
+    const kalp = document.createElement('div');
+    kalp.classList.add('patlayan-kalp');
+    kalp.style.left = (window.innerWidth/2 - 75) + 'px';
+    kalp.style.top = (window.innerHeight/2 - 75) + 'px';
+    document.body.appendChild(kalp);
+    setTimeout(() => kalp.remove(), 1000);
+
+    // Etrafına küçük kalpler saçalım
+    for(let i=0; i<12; i++) {
+      const minikalp = document.createElement('div');
+      minikalp.classList.add('fare-kalp');
+      minikalp.style.width = '20px';
+      minikalp.style.height = '20px';
+      minikalp.style.left = (window.innerWidth/2 + (Math.random()*200 - 100)) + 'px';
+      minikalp.style.top = (window.innerHeight/2 + (Math.random()*200 - 100)) + 'px';
+      document.body.appendChild(minikalp);
+      setTimeout(() => minikalp.remove(), 1500);
+    }
+  }
+
+  function balonOlustur() {
+    const balon = document.createElement('div');
+    balon.classList.add('balon');
+    balon.style.left = Math.random() * window.innerWidth + 'px';
+    balon.style.animationDuration = (8 + Math.random() * 7) + 's';
+    // Balon tipi seçelim
+    balon.classList.add(Math.random() > 0.5 ? 'kalp' : 'cicek');
+    document.body.appendChild(balon);
+    setTimeout(() => balon.remove(), 15000);
+  }
+</script>
+
 </body>
 </html>
