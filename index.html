@@ -6,14 +6,13 @@
   <title>Alaz & Alzen - 2. Ayımız</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
+    html, body {
+      margin: 0; padding: 0; height: 100%;
       font-family: 'Quicksand', sans-serif;
       background: url('https://i.imgur.com/4pJ2P3h.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       overflow-x: hidden;
-      overflow-y: auto;
     }
 
     #giris {
@@ -25,15 +24,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 999;
       text-align: center;
+      z-index: 10;
       padding: 20px;
     }
 
     #giris h1 {
       font-size: 3em;
       margin-bottom: 20px;
-      color: #fff;
     }
 
     #surprizButon {
@@ -54,27 +52,28 @@
 
     #icerik {
       display: none;
-      padding: 30px;
       max-width: 750px;
       margin: 80px auto;
+      padding: 30px;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 20px;
       color: #444;
       box-shadow: 0 0 30px rgba(0,0,0,0.2);
       line-height: 1.6;
       font-size: 1.15em;
+      position: relative;
+      z-index: 20;
     }
 
-    /* Yaprak animasyonu */
     .yaprak {
       position: fixed;
       width: 25px;
       height: 25px;
-      background-image: url('https://i.imgur.com/4NZ6uLY.png'); /* Sakura yaprağı */
+      background-image: url('https://i.imgur.com/4NZ6uLY.png');
       background-size: cover;
       animation: yaprak 10s linear infinite;
       pointer-events: none;
-      z-index: 0;
+      z-index: 5;
     }
 
     @keyframes yaprak {
@@ -91,7 +90,6 @@
   </style>
 </head>
 <body>
-
   <div id="giris">
     <h1>Alaz & Alzen<br>2. Ayımız 💗</h1>
     <button id="surprizButon">Sürprizi Aç 🌸</button>
@@ -100,17 +98,14 @@
   <div id="icerik">
     <h2>Sevgilim Alzen'e</h2>
     <p>
-      Bu iki ay, hayatımda hissettiğim en güzel duyguların başladığı yer oldu.  
-      Seninle geçen her gün; gülüşünle, sesinle, varlığınla daha da anlam kazandı.  
-      Yanımda olman bana huzur, cesaret ve tarifsiz bir mutluluk verdi.  
-      
-      Seni sevmek, her gün yeniden doğmak gibi.  
-      Kalbimde açan çiçekler gibi… Rüzgârda dans eden yapraklar gibi…  
-      Her şey seninle daha renkli, daha güzel.
-
-      İyi ki varsın Alzen.  
-      Seni sonsuzluğa kadar sevmeye söz veriyorum.
-
+      Bu iki ay, hayatımda hissettiğim en güzel duyguların başladığı yer oldu.<br />
+      Seninle geçen her gün; gülüşünle, sesinle, varlığınla daha da anlam kazandı.<br />
+      Yanımda olman bana huzur, cesaret ve tarifsiz bir mutluluk verdi.<br /><br />
+      Seni sevmek, her gün yeniden doğmak gibi.<br />
+      Kalbimde açan çiçekler gibi… Rüzgârda dans eden yapraklar gibi…<br />
+      Her şey seninle daha renkli, daha güzel.<br /><br />
+      İyi ki varsın Alzen.<br />
+      Seni sonsuzluğa kadar sevmeye söz veriyorum.<br /><br />
       — Alaz 💖
     </p>
   </div>
@@ -143,6 +138,5 @@
       }
     }
   </script>
-
 </body>
 </html>
