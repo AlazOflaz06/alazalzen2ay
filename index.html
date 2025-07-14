@@ -1,312 +1,152 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Alaz & Alzen - 2. Ayımız</title>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
-<style>
-  html, body {
-    height: 100%;
-    margin: 0; padding: 0;
-    font-family: 'Quicksand', sans-serif;
-    background: #fff;
-    overflow-x: hidden;
-    color: #333;
-    position: relative;
-  }
-
-  #giris {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(255, 192, 203, 0.6);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 10;
-    padding: 20px;
-  }
-
-  #giris h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: #c71585;
-  }
-
-  #surprizButon {
-    padding: 15px 40px;
-    font-size: 1.3em;
-    background: #ff69b4;
-    border: none;
-    border-radius: 30px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-
-  #surprizButon:hover {
-    background: #ff1493;
-  }
-
-  #icerik {
-    display: none;
-    max-width: 750px;
-    margin: 80px auto;
-    padding: 30px;
-    background: #ffe4e1;
-    border-radius: 20px;
-    color: #444;
-    box-shadow: 0 0 30px rgba(255,105,180,0.4);
-    line-height: 1.6;
-    font-size: 1.15em;
-    position: relative;
-    z-index: 20;
-    text-align: center;
-  }
-
-  /* CSS kalp şekli */
-  .kalp {
-    position: fixed;
-    width: 20px;
-    height: 18px;
-    background: #ff69b4;
-    transform: rotate(-45deg);
-    opacity: 0.9;
-    pointer-events: none;
-    z-index: 30;
-  }
-  .kalp::before,
-  .kalp::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 18px;
-    background: #ff69b4;
-    border-radius: 50%;
-  }
-  .kalp::before {
-    top: -10px;
-    left: 0;
-  }
-  .kalp::after {
-    left: 10px;
-    top: 0;
-  }
-
-  /* Balonlar */
-  .balon {
-    position: fixed;
-    bottom: -50px;
-    width: 30px;
-    height: 27px;
-    background: #ff69b4;
-    transform: rotate(-45deg);
-    opacity: 0.85;
-    pointer-events: none;
-    animation: balonYukari linear forwards;
-    z-index: 8;
-  }
-  .balon::before,
-  .balon::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 27px;
-    background: #ff69b4;
-    border-radius: 50%;
-  }
-  .balon::before {
-    top: -15px;
-    left: 0;
-  }
-  .balon::after {
-    left: 15px;
-    top: 0;
-  }
-
-  @keyframes balonYukari {
-    0% {
-      bottom: -50px;
-      opacity: 0.8;
-      transform: translateX(0) scale(1) rotate(-45deg);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alaz & Alzen - 2. Ayımız</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #ffd6e8;
+      color: #b30059;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 40px;
+      overflow-x: hidden;
+      position: relative;
+      text-align: center;
     }
-    100% {
-      bottom: 110vh;
-      opacity: 0;
-      transform: translateX(30px) scale(1.3) rotate(-45deg);
+    #container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+      max-width: 520px;
+      width: 90vw;
+      margin-bottom: 50px;
     }
-  }
-
-  /* Patlayan büyük kalp */
-  .patlayan-kalp {
-    position: fixed;
-    width: 100px;
-    height: 90px;
-    background: #ff1493;
-    transform: rotate(-45deg);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 40;
-    animation: patla 1s forwards;
-  }
-  .patlayan-kalp::before,
-  .patlayan-kalp::after {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 90px;
-    background: #ff1493;
-    border-radius: 50%;
-  }
-  .patlayan-kalp::before {
-    top: -50px;
-    left: 0;
-  }
-  .patlayan-kalp::after {
-    left: 50px;
-    top: 0;
-  }
-
-  @keyframes patla {
-    0% {
-      transform: scale(0.2) rotate(-45deg);
-      opacity: 0.9;
+    h1 {
+      margin-bottom: 10px;
     }
-    50% {
-      transform: scale(1.5) rotate(-45deg);
-      opacity: 0.6;
+    p {
+      font-size: 1.1em;
+      line-height: 1.4em;
+      margin-bottom: 20px;
     }
-    100% {
-      transform: scale(2.5) rotate(-45deg);
-      opacity: 0;
+    #sayac {
+      font-size: 1.2em;
+      color: #b30059;
+      margin-top: 15px;
+      font-weight: bold;
     }
-  }
-</style>
+    /* Uçan kalpler efekti */
+    .kalp {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      background: #ff69b4;
+      transform: rotate(-45deg);
+      animation: yukari 6s linear infinite;
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .kalp::before,
+    .kalp::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #ff69b4;
+      border-radius: 50%;
+    }
+    .kalp::before {
+      top: -9px;
+      left: 0;
+    }
+    .kalp::after {
+      left: 9px;
+      top: 0;
+    }
+    @keyframes yukari {
+      0% { bottom: -20px; }
+      100% { bottom: 110vh; }
+    }
+  </style>
 </head>
 <body>
-  <div id="giris">
-    <h1>Alaz & Alzen<br>2. Ayımız 💗</h1>
-    <button id="surprizButon">Sürprizi Aç 🌸</button>
-  </div>
-
-  <div id="icerik">
-    <h2>Sevgili Alzen'im,</h2>
+  <div id="container">
+    <h1>Alaz & Alzen 💖</h1>
+    <p>Bugün <strong>2. ayımız</strong> ve ben seni ne kadar çok sevdiğimi anlatmak için buradayım.</p>
+    
+    <div id="sayac">
+      Beraberliğimiz: <span id="gunler"></span> gün 
+      <span id="saatler"></span> saat 
+      <span id="dakikalar"></span> dakika 
+      <span id="saniyeler"></span> saniye
+    </div>
+    
     <p>
-      Mesafeler ne kadar uzak olsa da, kalbim hep seninle atıyor. Kayseri ile Ankara arasında kilometreler belki engel olabilir ama biliyorum ki, sevgi bu engelleri aşan en güçlü bağdır.<br><br>
-
-      Sanal dünyanın o soğuk ekranlarının arkasında bile, senin varlığını hissetmek, senin sesini duymak, gözlerindeki o parıltıyı görmek benim için dünyadaki en değerli hazinedir. Her gün seninle olan hayallerimizi kuruyorum; üniversiteyi kazanıp Ankara'ya geldiğinde nasıl sarılacağımı, seni nasıl hiç bırakmayacağımı düşünüyorum.<br><br>
-
-      Bu iki ay, sadece bir başlangıç oldu bizim için. Her gün biraz daha büyüyen bir sevgi, daha sıkı sarılan umutlar ve sonsuza dek sürecek bir yolda atılan ilk adımlar…<br><br>
-
-      Gecenin sessizliğinde, telefonun ışığında senin mesajlarını beklemek, kalbimi binlerce kelebekle dolduruyor. Ve ben sana o kadar bağlıyım ki, her sabah uyanınca ilk aklıma gelen sen oluyorsun. Yüzünü, gülüşünü, konuşma tarzını, birlikte geçireceğimiz o güzel günleri hayal etmekten kendimi alamıyorum.<br><br>
-
-      Sen benim hayatımda ışık oldun, umut oldun, en büyük motivasyonum oldun. Kayseri'nin soğuk rüzgarlarında bile içimi ısıtan tek şey sensin. Seni tanımadan önce bilmiyordum sevginin bu kadar güçlü ve gerçek olabileceğini.<br><br>
-
-      Üniversite kapılarını açtığında, o anın heyecanıyla Ankara’ya geleceğin gün, hayatımın en güzel günü olacak. Elimi tutup birlikte yürürken, hiçbir mesafe kalmayacak aramızda. O gün geldiğinde, artık sanal değil, gerçek sevgimizle bütünleşip, hayatımızı beraber kuracağız.<br><br>
-
-      Sana olan sevgim, her geçen gün katlanarak büyüyor. Her gece seni düşünmek, umutla yarınlara bakmak ve seni sevmek benim en büyük mutluluğum.<br><br>
-
-      Bu 2 ay sadece bir başlangıç, biz birlikte nice yıllara, nice mutluluklara yelken açacağız. İyi ki varsın Alzen, iyi ki benimlesin. Sana söz veriyorum; ne olursa olsun, her zaman yanında olacağım, seni her koşulda seveceğim ve koruyacağım.<br><br>
-
-      Seni çok seviyorum, kalbim seninle, her an seninle.<br><br>
-
-      Her zaman,<br>
-      Alaz 💖
+      Sen uzakta, Kayseri’de; ben Ankaradayım.<br>
+      Ama kalplerimiz hiç bu kadar yakın olmamıştı.<br>
+      Üniversiteyi kazanıp Ankara’ya geldiğinde<br>
+      birlikte daha güzel günler bizi bekliyor.<br><br>
+      Her saniye seni düşünüyorum,<br>
+      Her anı birlikte hayal ediyorum.<br>
+      Bu mesafe bile aşkımızı engelleyemiyor.<br><br>
+      Sonsuza kadar el ele, kalp kalbe…<br>
+      Seni çok seviyorum Alzen! 💖
     </p>
   </div>
 
-  <audio autoplay loop>
-    <source src="https://dl.sndup.net/85hx/YalnizlikSenfonisi.mp3" type="audio/mp3" />
-  </audio>
+  <script>
+    // Beraberlik başlangıç tarihi: 15 Mayıs 2025 (0 bazlı ay: 4 = Mayıs)
+    const baslangicTarihi = new Date(2025, 4, 15, 0, 0, 0);
 
-<script>
-  const buton = document.getElementById('surprizButon');
-  const giris = document.getElementById('giris');
-  const icerik = document.getElementById('icerik');
+    function guncelleSayac() {
+      const suAn = new Date();
+      let fark = suAn - baslangicTarihi;
 
-  buton.onclick = () => {
-    giris.style.display = 'none';
-    icerik.style.display = 'block';
-    baslatEfektler();
-  };
+      if (fark < 0) {
+        document.getElementById("sayac").textContent = "Beraberlik tarihi henüz gelmedi.";
+        return;
+      }
 
-  // Fareyi takip eden küçük kalpler
-  document.addEventListener('mousemove', (e) => {
-    if(icerik.style.display === 'block') {
-      const kalp = document.createElement('div');
-      kalp.classList.add('kalp');
-      kalp.style.left = (e.clientX - 10) + 'px';
-      kalp.style.top = (e.clientY - 10) + 'px';
-      kalp.style.width = '20px';
-      kalp.style.height = '18px';
-      document.body.appendChild(kalp);
-      setTimeout(() => kalp.remove(), 1200);
+      const saniye = 1000;
+      const dakika = saniye * 60;
+      const saat = dakika * 60;
+      const gun = saat * 24;
+
+      const gecenGun = Math.floor(fark / gun);
+      fark %= gun;
+      const gecenSaat = Math.floor(fark / saat);
+      fark %= saat;
+      const gecenDakika = Math.floor(fark / dakika);
+      fark %= dakika;
+      const gecenSaniye = Math.floor(fark / saniye);
+
+      document.getElementById("gunler").textContent = gecenGun;
+      document.getElementById("saatler").textContent = gecenSaat;
+      document.getElementById("dakikalar").textContent = gecenDakika;
+      document.getElementById("saniyeler").textContent = gecenSaniye;
     }
-  });
 
-  // Dokunmatik cihazlarda dokunma ile kalp efekti
-  document.addEventListener('touchmove', (e) => {
-    if(icerik.style.display === 'block') {
-      const touch = e.touches[0];
-      const kalp = document.createElement('div');
-      kalp.classList.add('kalp');
-      kalp.style.left = (touch.clientX - 10) + 'px';
-      kalp.style.top = (touch.clientY - 10) + 'px';
-      kalp.style.width = '20px';
-      kalp.style.height = '18px';
-      document.body.appendChild(kalp);
-      setTimeout(() => kalp.remove(), 1200);
-    }
-  });
+    setInterval(guncelleSayac, 1000);
+    guncelleSayac();
 
-  // Patlayan kalp ve balonları başlat
-  function baslatEfektler() {
-    // 20 saniyede bir patlayan kalp
+    // Uçan kalpler efekti
     setInterval(() => {
-      patlayanKalpOlustur();
-    }, 20000);
-    patlayanKalpOlustur(); // ilk başta da patlasın
-
-    // Balonları aralıklı oluştur
-    setInterval(() => {
-      balonOlustur();
-    }, 2500);
-  }
-
-  function patlayanKalpOlustur() {
-    const kalp = document.createElement('div');
-    kalp.classList.add('patlayan-kalp');
-    kalp.style.left = (window.innerWidth/2 - 50) + 'px';
-    kalp.style.top = (window.innerHeight/2 - 45) + 'px';
-    document.body.appendChild(kalp);
-    setTimeout(() => kalp.remove(), 1000);
-
-    // Etrafına küçük kalpler saçalım
-    for(let i=0; i<12; i++) {
-      const minikalp = document.createElement('div');
-      minikalp.classList.add('kalp');
-      minikalp.style.width = '20px';
-      minikalp.style.height = '18px';
-      minikalp.style.left = (window.innerWidth/2 + (Math.random()*200 - 100)) + 'px';
-      minikalp.style.top = (window.innerHeight/2 + (Math.random()*200 - 100)) + 'px';
-      document.body.appendChild(minikalp);
-      setTimeout(() => minikalp.remove(), 1500);
-    }
-  }
-
-  function balonOlustur() {
-    const balon = document.createElement('div');
-    balon.classList.add('balon');
-    balon.style.left = Math.random() * window.innerWidth + 'px';
-    balon.style.animationDuration = (8 + Math.random() * 7) + 's';
-    document.body.appendChild(balon);
-    setTimeout(() => balon.remove(), 15000);
-  }
-</script>
-
+      const kalp = document.createElement("div");
+      kalp.classList.add("kalp");
+      kalp.style.left = Math.random() * 100 + "vw";
+      kalp.style.bottom = "-20px";
+      document.body.appendChild(kalp);
+      setTimeout(() => kalp.remove(), 7000);
+    }, 400);
+  </script>
 </body>
 </html>
