@@ -4,212 +4,156 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Alaz & Alzen - 2. Ayımız</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: #121212;
-      background-image: url('https://i.imgur.com/XscVZEm.jpg'); /* ✅ Senin resmin */
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: url('https://i.imgur.com/bOmZo1x.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: white;
-      text-align: center;
-      overflow-x: hidden;
-      overflow-y: auto;
-      height: 100vh;
-      position: relative;
+      color: #fff;
+      overflow: hidden;
     }
+
     #giris {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 20;
-      padding: 20px;
+      z-index: 999;
+      text-align: center;
     }
-    #giris img {
-      width: 150px;
-      margin-bottom: 20px;
-    }
+
     #giris h1 {
-      font-weight: normal;
       font-size: 3em;
-      margin-bottom: 25px;
-      color: white;
+      margin-bottom: 20px;
+      color: #fff;
     }
+
     #surprizButon {
       padding: 15px 40px;
       font-size: 1.3em;
+      background: #ffb6c1;
       border: none;
       border-radius: 30px;
-      background: #ff4d6d;
-      color: white;
+      color: #fff;
+      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
+      transition: 0.3s ease;
     }
+
     #surprizButon:hover {
-      background: #e63950;
+      background: #ff8fa3;
     }
+
     #icerik {
       display: none;
+      padding: 30px;
       max-width: 700px;
-      margin: 80px auto 40px;
-      padding: 0 20px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      color: #444;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+      z-index: 1;
       position: relative;
-      z-index: 10;
-      line-height: 1.6;
-      font-size: 1.15em;
-      background: rgba(0,0,0,0.45);
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      text-align: left;
+      overflow-y: auto;
     }
+
     #icerik h2 {
-      font-size: 2.7em;
+      font-size: 2.2em;
+      color: #d81b60;
       margin-bottom: 20px;
-      font-weight: 600;
     }
+
     #icerik p {
+      font-size: 1.1em;
       white-space: pre-line;
     }
 
-    /* Uçuşan kalpler */
-    .ufusan-kalp {
+    .yaprak {
       position: fixed;
-      width: 20px;
-      height: 20px;
-      background: #ff4d6d;
-      transform: rotate(45deg);
-      border-radius: 3px;
-      opacity: 0.8;
-      animation: ucus linear forwards;
+      width: 25px;
+      height: 25px;
+      background-image: url('https://i.imgur.com/4NZ6uLY.png'); /* Sakura yaprağı */
+      background-size: cover;
+      animation: yaprak 10s linear infinite;
       pointer-events: none;
-      z-index: 9999;
-    }
-    .ufusan-kalp::before, .ufusan-kalp::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ff4d6d;
-      border-radius: 50%;
-    }
-    .ufusan-kalp::before {
-      top: -10px;
-      left: 0;
-    }
-    .ufusan-kalp::after {
-      left: -10px;
-      top: 0;
-    }
-    @keyframes ucus {
-      0% {
-        opacity: 0;
-        transform: translateY(100vh) translateX(0) rotate(45deg);
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-120vh) translateX(50vw) rotate(45deg);
-      }
+      z-index: 0;
     }
 
-    /* Parlayan yıldızlar */
-    .yildiz {
-      position: fixed;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: parlama ease-in-out infinite;
-      pointer-events: none;
-      z-index: 9998;
-    }
-    @keyframes parlama {
-      0%, 100% {
-        opacity: 0.3;
-        transform: scale(1);
+    @keyframes yaprak {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
       }
-      50% {
-        opacity: 1;
-        transform: scale(1.3);
+      10% { opacity: 1; }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
       }
     }
   </style>
 </head>
 <body>
+
   <div id="giris">
-    <img src="https://i.imgur.com/TfT0Wqr.png" alt="Çift Silueti" />
-    <h1>Alaz & Alzen — 2. Ayımız</h1>
-    <button id="surprizButon">Sürprizi Aç 💖</button>
+    <h1>Alaz & Alzen<br>2. Ayımız 💗</h1>
+    <button id="surprizButon">Sürprizi Aç 🌸</button>
   </div>
 
   <div id="icerik">
-    <h2>Alzen...</h2>
+    <h2>Sevgilim Alzen'e</h2>
     <p>
-      Hayatımın en güzel 2 ayı seninle geçti. Daha dün gibi gözlerinin içine ilk baktığım an...<br>
-      Zaman geçtikçe seni tanıdıkça, sana her gün yeniden âşık oldum. Gülüşünle içimi ısıttın,<br>
-      sesinle ruhuma huzur verdin. Varlığın bana güç, umut, sevgi kattı.<br><br>
-      Seninle geçirdiğim her saniye, hayatımdaki en değerli anlara dönüştü. Sanki kalbim yıllardır seni bekliyormuş.<br>
-      İyi ki geldin, iyi ki varsın, iyi ki “biz” olduk. Her şeyinle, her halinle mükemmelsin.<br><br>
-      Bu iki ay, sadece bir başlangıç. Daha yaşayacak milyonlarca anımız, birlikte izleyecek gün batımlarımız,<br>
-      tutacağımız ellerimiz var. Ve ben her bir anı seninle geçirmek istiyorum…<br><br>
-      Seni tarifsizce, derinden ve sonsuzca seviyorum Alzen…<br><br>
+      Bu iki ay, hayatımda hissettiğim en güzel duyguların başladığı yer oldu.  
+      Seninle geçen her gün; gülüşünle, sesinle, varlığınla daha da anlam kazandı.  
+      Yanımda olman bana huzur, cesaret ve tarifsiz bir mutluluk verdi.  
+      
+      Seni sevmek, her gün yeniden doğmak gibi.  
+      Kalbimde açan çiçekler gibi… Rüzgârda dans eden yapraklar gibi…  
+      Her şey seninle daha renkli, daha güzel.
+
+      İyi ki varsın Alzen.  
+      Seni sonsuzluğa kadar sevmeye söz veriyorum.
+
       — Alaz 💖
     </p>
   </div>
 
   <audio autoplay loop>
     <source src="https://dl.sndup.net/85hx/YalnizlikSenfonisi.mp3" type="audio/mp3" />
-    Tarayıcınız ses formatını desteklemiyor.
   </audio>
 
   <script>
-    const btn = document.getElementById('surprizButon');
+    const buton = document.getElementById('surprizButon');
     const giris = document.getElementById('giris');
     const icerik = document.getElementById('icerik');
 
-    btn.onclick = () => {
+    buton.onclick = () => {
       giris.style.display = 'none';
       icerik.style.display = 'block';
-      kalpYagmuru();
-      yildizOlustur(30);
+      yaprakYagmuru();
     };
 
-    function kalpYagmuru() {
-      for(let i=0; i<40; i++) {
+    function yaprakYagmuru() {
+      for (let i = 0; i < 40; i++) {
         setTimeout(() => {
-          const kalp = document.createElement('div');
-          kalp.classList.add('ufusan-kalp');
-          kalp.style.left = `${Math.random() * 100}vw`;
-          kalp.style.bottom = '-30px';
-          kalp.style.animationDuration = `${6 + Math.random() * 4}s`;
-          document.body.appendChild(kalp);
-          setTimeout(() => kalp.remove(), 11000);
-        }, i * 250);
-      }
-    }
-
-    function yildizOlustur(sayi) {
-      for(let i=0; i<sayi; i++) {
-        const yildiz = document.createElement('div');
-        yildiz.classList.add('yildiz');
-        yildiz.style.width = yildiz.style.height = `${1 + Math.random()*3}px`;
-        yildiz.style.left = `${Math.random() * 100}vw`;
-        yildiz.style.top = `${Math.random() * 100}vh`;
-        yildiz.style.animationDuration = `${2 + Math.random() * 3}s`;
-        document.body.appendChild(yildiz);
+          const yaprak = document.createElement('div');
+          yaprak.classList.add('yaprak');
+          yaprak.style.left = `${Math.random() * 100}vw`;
+          yaprak.style.animationDuration = `${6 + Math.random() * 5}s`;
+          document.body.appendChild(yaprak);
+          setTimeout(() => yaprak.remove(), 12000);
+        }, i * 300);
       }
     }
   </script>
+
 </body>
 </html>
