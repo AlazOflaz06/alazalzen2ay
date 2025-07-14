@@ -65,25 +65,28 @@
       z-index: 20;
     }
 
-    .yaprak {
+    /* Kalp animasyonu */
+    .kalp {
       position: fixed;
       width: 25px;
       height: 25px;
-      background-image: url('https://i.imgur.com/4NZ6uLY.png');
-      background-size: cover;
-      animation: yaprak 10s linear infinite;
+      background-image: url('https://i.imgur.com/F5b0r0j.png'); /* Pembe kalp */
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: kalpYukari 10s linear infinite;
       pointer-events: none;
       z-index: 5;
+      opacity: 0;
     }
 
-    @keyframes yaprak {
+    @keyframes kalpYukari {
       0% {
-        transform: translateY(-10vh) rotate(0deg);
+        transform: translateY(110vh) rotate(0deg);
         opacity: 0;
       }
       10% { opacity: 1; }
       100% {
-        transform: translateY(110vh) rotate(360deg);
+        transform: translateY(-10vh) rotate(360deg);
         opacity: 0;
       }
     }
@@ -122,18 +125,18 @@
     buton.onclick = () => {
       giris.style.display = 'none';
       icerik.style.display = 'block';
-      yaprakYagmuru();
+      kalpYagmuru();
     };
 
-    function yaprakYagmuru() {
+    function kalpYagmuru() {
       for (let i = 0; i < 40; i++) {
         setTimeout(() => {
-          const yaprak = document.createElement('div');
-          yaprak.classList.add('yaprak');
-          yaprak.style.left = `${Math.random() * 100}vw`;
-          yaprak.style.animationDuration = `${6 + Math.random() * 5}s`;
-          document.body.appendChild(yaprak);
-          setTimeout(() => yaprak.remove(), 12000);
+          const kalp = document.createElement('div');
+          kalp.classList.add('kalp');
+          kalp.style.left = `${Math.random() * 100}vw`;
+          kalp.style.animationDuration = `${6 + Math.random() * 5}s`;
+          document.body.appendChild(kalp);
+          setTimeout(() => kalp.remove(), 12000);
         }, i * 300);
       }
     }
